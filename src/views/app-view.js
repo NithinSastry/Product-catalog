@@ -11,7 +11,7 @@ class AppView {
         this.appDiv.innerHTML = `
             <div id="container">
                 ${this.filterView.getMarkup()}
-                ${this.listView.getMarkup()}
+                ${this.listView.getInitialMarkup()}
             </div>
         `;
     }
