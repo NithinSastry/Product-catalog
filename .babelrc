@@ -1,5 +1,5 @@
 {
-    "presets": [
-        "latest"
+    "plugins": [
+        "@babel/plugin-proposal-class-properties"
     ]
 }
