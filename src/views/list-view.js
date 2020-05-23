@@ -8,7 +8,7 @@ class ListView {
     this.eventHub.subscribe('listChanged', this.reBuildMarkup);
     this.listDiv = null;
   }
-  getInitialMarkup = () => {
+  getMarkUp = () => {
     return `
             <div id="list">
                 <p>Loading items....</p>

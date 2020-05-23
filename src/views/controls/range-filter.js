@@ -1,4 +1,4 @@
-import EventHub from './../controller/event-hub';
+import EventHub from '../../controller/event-hub';
 class RangeFilter {
   constructor() {
     this.minValue = 0;

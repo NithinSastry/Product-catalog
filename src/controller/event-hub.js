@@ -5,6 +5,7 @@ class EventHub {
       this.EventMap = {
         listChanged: [],
         filterChanged: [],
+        searchBrand: [],
       };
       instance = this;
     }

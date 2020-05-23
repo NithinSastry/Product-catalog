@@ -5,6 +5,7 @@ class ProductCatalog {
     this.serviceInstance = serviceInstance;
     this.eventHub = EventHub;
     this.eventHub.subscribe('filterChanged', this.filterModel);
+    this.eventHub.subscribe('searchBrand', this.searchModel);
     this.init();
   }
   init = () => {
@@ -22,6 +23,20 @@ class ProductCatalog {
       }
     });
     this.eventHub.publish('listChanged', { items: filteredProducts });
+  };
+
+  searchModel = ({ searchText }) => {
+    if (!searchText) {
+      this.eventHub.publish('listChanged', { items: this.products });
+      return;
+    }
+    const searchResults = [];
+    this.products.forEach((product) => {
+      if (product.title.includes(searchText)) {
+        searchResults.push(product);
+      }
+    });
+    this.eventHub.publish('listChanged', { items: searchResults });
   };
 }
 
