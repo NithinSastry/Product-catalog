@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "babel": "sudo babel src -d dist --unsafe-perm=true --allow-root",
-    "build": "webpack --mode development --unsafe-perm=true --allow-root",
+    "build": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nithin Sastry Tellapuri",
