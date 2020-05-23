@@ -1,7 +1,11 @@
+import EventHub from './../controller/event-hub';
 class RangeFilter {
   constructor() {
     this.minValue = 0;
     this.maxValue = 1000;
+    this.eventHub = EventHub;
+    window.setMinimumForRange = this.setMinimum;
+    window.setMaximumForRange = this.setMaximum;
   }
 
   getOptions = () => {
@@ -14,14 +18,31 @@ class RangeFilter {
     return options;
   };
 
+  setMinimum = (value) => {
+    this.minValue = value;
+    this.filterList();
+  };
+
+  setMaximum = (value) => {
+    this.maxValue = value;
+    this.filterList();
+  };
+
+  filterList = () => {
+    this.eventHub.publish('filterChanged', {
+      minValue: this.minValue,
+      maxValue: this.maxValue,
+    });
+  };
+
   getMarkup = () => {
     return `
         <div class="range-filter">
-            <select>
+                <select id="minValue" onchange="setMinimumForRange(value)">
                 ${this.getOptions()}
                 </select>
                 <p>to</p>
-                <select>
+                <select id="maxValue" onchange="setMaximumForRange(value)">
                 ${this.getOptions()}
                 </select>
         </div>
