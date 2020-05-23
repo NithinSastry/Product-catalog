@@ -6,6 +6,7 @@ class ProductCatalog {
     this.eventHub = EventHub;
     this.eventHub.subscribe('filterChanged', this.filterModel);
     this.eventHub.subscribe('searchBrand', this.searchModel);
+    this.eventHub.subscribe('colorPick', this.searchColors);
     this.init();
   }
   init = () => {
@@ -25,7 +26,7 @@ class ProductCatalog {
     this.eventHub.publish('listChanged', { items: filteredProducts });
   };
 
-  searchModel = ({ searchText }) => {
+  searchModel = ({ searchText = '' }) => {
     if (!searchText) {
       this.eventHub.publish('listChanged', { items: this.products });
       return;
@@ -37,6 +38,16 @@ class ProductCatalog {
       }
     });
     this.eventHub.publish('listChanged', { items: searchResults });
+  };
+
+  searchColors = ({ selectedColors = [] }) => {
+    const filteredProducts = [];
+    this.products.forEach((product) => {
+      if (selectedColors.includes(product.color)) {
+        filteredProducts.push(product);
+      }
+    });
+    this.eventHub.publish('listChanged', { items: filteredProducts });
   };
 }
 
