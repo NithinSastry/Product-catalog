@@ -3,16 +3,14 @@ class ColorPickerFilter {
   constructor() {
     //TODO: Need to remove this and fetch it from model.
     this.color = [
-      'purple',
-      'Mauv',
-      'Green',
-      'Aquamarine',
-      'Crimson',
-      'Pink',
+      'Violet',
+      'Teal',
       'Goldenrod',
-      'Crimson',
-      'Pink',
       'Blue',
+      'Yellow',
+      'Orange',
+      'Turquoise',
+      'Crimson',
     ];
     this.selectedColors = [];
     this.eventHub = EventHub;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "babel": "sudo babel src -d dist --unsafe-perm=true --allow-root",
-    "build": "webpack --mode development",
+    "build": "webpack-dev-server --mode development --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nithin Sastry Tellapuri",
@@ -19,9 +19,11 @@
     "babel-preset-latest": "^6.24.1",
     "css-loader": "^3.5.3",
     "express": "^4.17.1",
+    "html-webpack-plugin": "^4.3.0",
     "json-server": "^0.16.1",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
   }
 }
