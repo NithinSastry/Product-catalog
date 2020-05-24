@@ -1,9 +1,7 @@
-import HeaderView from './header-view';
 import EventHub from '../controller/event-hub';
 import ItemViewMarkup from './item-view';
 class ListView {
   constructor() {
-    this.headerView = new HeaderView();
     this.eventHub = EventHub;
     this.eventHub.subscribe('listChanged', this.reBuildMarkup);
     this.listDiv = null;
