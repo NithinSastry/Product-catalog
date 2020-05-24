@@ -7,6 +7,7 @@ class ProductCatalog {
     this.eventHub.subscribe('filterChanged', this.filterModel);
     this.eventHub.subscribe('searchBrand', this.searchModel);
     this.eventHub.subscribe('colorPick', this.searchColors);
+    this.eventHub.subscribe('sortList', this.sortModel);
     this.init();
   }
   init = () => {
@@ -48,6 +49,19 @@ class ProductCatalog {
       }
     });
     this.eventHub.publish('listChanged', { items: filteredProducts });
+  };
+
+  sortModel = ({ order }) => {
+    if (order === 'asc') {
+      this.products.sort(
+        (productA, productB) => productA.price - productB.price
+      );
+    } else {
+      this.products.sort(
+        (productA, productB) => productB.price - productA.price
+      );
+    }
+    this.eventHub.publish('listChanged', { items: this.products });
   };
 }
 

@@ -7,6 +7,7 @@ class EventHub {
         filterChanged: [],
         searchBrand: [],
         colorPick: [],
+        sortList: [],
       };
       instance = this;
     }
