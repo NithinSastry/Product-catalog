@@ -4,17 +4,19 @@
 }
 
 #filter {
-  flex-grow: 3;
+  flex-grow: 5;
   border: 2px solid black;
 }
 
 #list {
   display: flex;
   flex-direction: row;
-  flex-grow: 7;
+  flex-wrap: wrap;
 }
 
 .item {
+  display: flex;
+  flex-direction: column;
   border: 1px solid black;
   margin: 2px;
 }
@@ -27,4 +29,20 @@
 .detail-view {
   display: flex;
   flex-direction: column;
+  flex-grow: 7;
+}
+
+.food-image {
+  width: 254px;
+  height: 160px;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.food-title {
+  text-align: center;
 }

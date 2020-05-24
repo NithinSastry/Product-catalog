@@ -9,7 +9,7 @@ class SearchFilter {
   };
   getMarkup = () => {
     return `<div id="searchFilter">
-        <input type="text" name="Search" placeholder="Enter brand" onchange="searchBrands(value)"/>
+        <input type="text" name="Search" placeholder="Enter brand" onkeyup="searchBrands(value)"/>
     </div>`;
   };
 }
