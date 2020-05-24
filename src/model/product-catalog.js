@@ -1,17 +1,23 @@
 import EventHub from './../controller/event-hub';
+import { getProducts } from './../utils/service-broker';
+
+let instance = null;
 class ProductCatalog {
-  constructor(serviceInstance, eventHub) {
-    this.products = [];
-    this.serviceInstance = serviceInstance;
-    this.eventHub = EventHub;
-    this.eventHub.subscribe('filterChanged', this.filterModel);
-    this.eventHub.subscribe('searchBrand', this.searchModel);
-    this.eventHub.subscribe('colorPick', this.searchColors);
-    this.eventHub.subscribe('sortList', this.sortModel);
-    this.init();
+  constructor() {
+    if (!instance) {
+      instance = this;
+      this.products = [];
+      this.eventHub = EventHub;
+      this.eventHub.subscribe('filterChanged', this.filterModel);
+      this.eventHub.subscribe('searchBrand', this.searchModel);
+      this.eventHub.subscribe('colorPick', this.searchColors);
+      this.eventHub.subscribe('sortList', this.sortModel);
+      this.init();
+    }
+    return instance;
   }
   init = () => {
-    this.serviceInstance.getProducts().then((data) => {
+    getProducts().then((data) => {
       this.products = data;
       this.eventHub.publish('listChanged', { items: this.products });
     });
@@ -63,6 +69,14 @@ class ProductCatalog {
     }
     this.eventHub.publish('listChanged', { items: this.products });
   };
+
+  getColors = () => {
+    const colors = [];
+    this.products.forEach((product) => {
+      colors.push(product.color);
+    });
+    return colors;
+  };
 }
 
-export default ProductCatalog;
+export default new ProductCatalog();
