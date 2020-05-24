@@ -1,3 +1,4 @@
-Ideas:
+Installation:
 
-1. Service broker - Write a class which fetches data from an end point
+1. Do npm i
+2. Run npm run build
