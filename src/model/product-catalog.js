@@ -1,21 +1,18 @@
-import EventHub from './../controller/event-hub';
+import { getEventHub } from './../controller/event-hub';
 import { getProducts } from './../utils/service-broker';
 
 let instance = null;
 class ProductCatalog {
   constructor() {
-    if (!instance) {
-      instance = this;
-      this.products = [];
-      this.eventHub = EventHub;
-      this.eventHub.subscribe('filterChanged', this.filterModel);
-      this.eventHub.subscribe('searchBrand', this.searchModel);
-      this.eventHub.subscribe('colorPick', this.searchColors);
-      this.eventHub.subscribe('sortList', this.sortModel);
-      this.init();
-    }
-    return instance;
+    this.products = [];
+    this.eventHub = getEventHub();
+    this.eventHub.subscribe('filterChanged', this.filterModel);
+    this.eventHub.subscribe('searchBrand', this.searchModel);
+    this.eventHub.subscribe('colorPick', this.searchColors);
+    this.eventHub.subscribe('sortList', this.sortModel);
+    this.init();
   }
+
   init = () => {
     getProducts().then((data) => {
       this.products = data;
@@ -79,4 +76,11 @@ class ProductCatalog {
   };
 }
 
-export default new ProductCatalog();
+export const getProductCatalog = () => {
+  if (!instance) {
+    const productCatalog = new ProductCatalog();
+    instance = productCatalog;
+    return instance;
+  }
+  return instance;
+};

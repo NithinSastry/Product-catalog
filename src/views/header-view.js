@@ -1,7 +1,7 @@
-import EventHub from '../controller/event-hub';
+import { getEventHub } from '../controller/event-hub';
 class HeaderView {
   constructor() {
-    this.eventHub = EventHub;
+    this.eventHub = getEventHub();
     this.eventHub.subscribe('listChanged', this.reBuildMarkup);
     this.results = null;
     window.sortList = this.sortList;

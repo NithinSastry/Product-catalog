@@ -1,17 +1,13 @@
 let instance = null;
 class EventHub {
   constructor() {
-    if (!instance) {
-      this.EventMap = {
-        listChanged: [],
-        filterChanged: [],
-        searchBrand: [],
-        colorPick: [],
-        sortList: [],
-      };
-      instance = this;
-    }
-    return instance;
+    this.EventMap = {
+      listChanged: [],
+      filterChanged: [],
+      searchBrand: [],
+      colorPick: [],
+      sortList: [],
+    };
   }
 
   publish = (event, payload) => {
@@ -27,4 +23,12 @@ class EventHub {
   };
 }
 
-export default new EventHub();
+export const getEventHub = () => {
+  if (!instance) {
+    const eventHub = new EventHub();
+    instance = eventHub;
+    return instance;
+  }
+  return instance;
+};
+// export default new EventHub();

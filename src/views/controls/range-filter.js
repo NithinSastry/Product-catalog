@@ -1,9 +1,9 @@
-import EventHub from '../../controller/event-hub';
+import { getEventHub } from '../../controller/event-hub';
 class RangeFilter {
   constructor() {
     this.minValue = 0;
     this.maxValue = 1000;
-    this.eventHub = EventHub;
+    this.eventHub = getEventHub();
     window.setMinimumForRange = this.setMinimum;
     window.setMaximumForRange = this.setMaximum;
   }

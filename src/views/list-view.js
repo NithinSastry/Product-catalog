@@ -1,8 +1,8 @@
-import EventHub from '../controller/event-hub';
+import { getEventHub } from '../controller/event-hub';
 import ItemViewMarkup from './item-view';
 class ListView {
   constructor() {
-    this.eventHub = EventHub;
+    this.eventHub = getEventHub();
     this.eventHub.subscribe('listChanged', this.reBuildMarkup);
     this.listDiv = null;
   }

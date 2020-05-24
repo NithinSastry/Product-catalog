@@ -1,7 +1,7 @@
-import EventHub from './../../controller/event-hub';
+import { getEventHub } from './../../controller/event-hub';
 class SearchFilter {
   constructor() {
-    this.eventHub = EventHub;
+    this.eventHub = getEventHub();
     window.searchBrands = this.searchBrands;
   }
   searchBrands = (value) => {

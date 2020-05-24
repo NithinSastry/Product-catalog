@@ -1,4 +1,4 @@
-import EventHub from '../../controller/event-hub';
+import { getEventHub } from '../../controller/event-hub';
 class ColorPickerFilter {
   constructor() {
     //TODO: Need to remove this and fetch it from model.
@@ -13,7 +13,7 @@ class ColorPickerFilter {
       'Crimson',
     ];
     this.selectedColors = [];
-    this.eventHub = EventHub;
+    this.eventHub = getEventHub();
     window.setColor = this.setColor;
   }
 
