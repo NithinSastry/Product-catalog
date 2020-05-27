@@ -1,4 +1,4 @@
-import { getEventHub } from './../../controller/event-hub';
+import { getEventHub } from '../../controller/event-hub';
 class SearchFilter {
   constructor() {
     this.eventHub = getEventHub();

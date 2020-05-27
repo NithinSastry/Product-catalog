@@ -1,5 +1,5 @@
-import { getEventHub } from './../controller/event-hub';
-import { getProducts } from './../utils/service-broker';
+import { getEventHub } from '../controller/event-hub';
+import { getProducts } from '../utils/service-broker';
 
 let instance = null;
 class ProductCatalog {
