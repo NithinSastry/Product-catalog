@@ -1,4 +1,6 @@
 import { getCards, storeCard } from './../utils/service-broker';
+import { getEventHub } from './../controller/event-hub';
+import { EVENTS } from './../controller/events';
 let instance;
 class CardModel {
   constructor() {
@@ -13,6 +15,7 @@ class CardModel {
 
   init = () => {
     this.savedCards = getCards();
+    getEventHub().publish(EVENTS.CARDS_LOADED, { cards: this.savedCards });
   };
 
   saveCard = ({ cardInfo = {} }) => {
