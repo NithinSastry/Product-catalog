@@ -1,4 +1,4 @@
-const getItem = (card) => {
+const getItem = (card, index) => {
   return `
         <div class="card-item">
             <div class="card-info">
@@ -7,7 +7,7 @@ const getItem = (card) => {
                 ${card.cvv}
             </div>
             <div class="delete-card">
-                <button>delete</button>
+                <button data-id="${index}">delete</button>
             </div>
         </div>
     `;

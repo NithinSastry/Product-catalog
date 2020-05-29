@@ -28,3 +28,8 @@ export const storeCard = (cardInfo = {}) => {
   storage.setItem('cards', JSON.stringify(cards));
   return cards;
 };
+
+export const updateCards = (cards = []) => {
+  storage.setItem('cards', JSON.stringify(cards));
+  return JSON.parse(storage.getItem('cards'));
+};

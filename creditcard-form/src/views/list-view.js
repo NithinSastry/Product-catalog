@@ -4,32 +4,40 @@ import { EVENTS } from './../controller/events';
 export default class ListView {
   constructor() {
     getEventHub().subscribe(EVENTS.CARDS_LOADED, this.reBuildList);
-    this.listElement = null;
+    this.listElements = null;
     this.cards = [];
+    window.removeListItem = this.removeListItem;
   }
+
+  removeListItem = (e) => {
+    getEventHub().publish(EVENTS.DELETE_CARD, {
+      index: e.target.dataset['id'],
+    });
+  };
+
   getMarkup = () => {
     return `
-            <div class = "list-view">
+            <div class="list-view">
                 <p>Saved cards</p>
-                <p class='list-element'>${
+                <div class='list-elements' onclick="removeListItem(event)">${
                   this.cards.length === 0 ? 'No saved cards.' : ''
-                }</p>
+                }</div>
             </div>
         `;
   };
   reBuildList = ({ cards = [] }) => {
     let markUp = '';
-    this.cards.length = cards.length;
-    const listElement = this.listElement
-      ? this.listElement
-      : document.querySelector('.list-element');
+    this.cards = cards;
+    this.listElements = this.listElements
+      ? this.listElements
+      : document.querySelector('.list-elements');
     if (cards.length === 0) {
       markUp += `No items to load.`;
     } else {
-      cards.forEach((card) => {
-        markUp += getItem(card);
+      cards.forEach((card, index) => {
+        markUp += getItem(card, index);
       });
     }
-    listElement.innerHTML = markUp;
+    this.listElements.innerHTML = markUp;
   };
 }
