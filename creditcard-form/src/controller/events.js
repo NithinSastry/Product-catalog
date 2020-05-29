@@ -1,3 +1,4 @@
 export const EVENTS = {
   CARDS_LOADED: 'CARDS_LOADED',
+  CARD_SAVED: 'CARD_SAVED',
 };

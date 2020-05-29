@@ -4,12 +4,8 @@ import { EVENTS } from './../controller/events';
 let instance;
 class CardModel {
   constructor() {
-    this.formState = {
-      cardNumber: '',
-      expiryDate: '',
-      cvv: '',
-    };
     this.savedCards = [];
+    getEventHub().subscribe(EVENTS.CARD_SAVED, this.saveCard);
     this.init();
   }
 
@@ -19,7 +15,10 @@ class CardModel {
   };
 
   saveCard = ({ cardInfo = {} }) => {
-    storeCard(cardInfo);
+    this.savedCards = storeCard(cardInfo);
+    if (this.savedCards.length > 0) {
+      getEventHub().publish(EVENTS.CARDS_LOADED, { cards: this.savedCards });
+    }
   };
 }
 

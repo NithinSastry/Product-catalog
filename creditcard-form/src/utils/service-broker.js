@@ -22,7 +22,9 @@ export const getCards = () => {
 };
 
 export const storeCard = (cardInfo = {}) => {
-  const cards = JSON.parse(storage.getItem('cards'));
+  let cards = JSON.parse(storage.getItem('cards'));
+  cards = cards == null ? [] : cards;
   cards.push(cardInfo);
   storage.setItem('cards', JSON.stringify(cards));
+  return cards;
 };
