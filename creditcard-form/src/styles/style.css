@@ -5,3 +5,13 @@
   align-items: center;
   height: -webkit-fill-available;
 }
+
+.error-field {
+  border-color: red;
+  border-width: 2px;
+}
+
+.error-message {
+  font-style: italic;
+  color: red;
+}

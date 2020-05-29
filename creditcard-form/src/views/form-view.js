@@ -1,5 +1,10 @@
 import { EVENTS } from '../controller/events';
 import { getEventHub } from '../controller/event-hub';
+import {
+  validateError,
+  showError,
+  removeError,
+} from './../validations/error-handler';
 export default class FormView {
   constructor() {
     this.formState = {};
@@ -8,6 +13,7 @@ export default class FormView {
     window.onchangeDate = this.onchangeDate;
     window.onchangeCVVNumber = this.onchangeCVVNumber;
     window.onclickSave = this.onclickSave;
+    window.onFormControlFocusOut = this.onFormControlFocusOut;
   }
 
   validateCardNumber = () => {
@@ -30,18 +36,35 @@ export default class FormView {
     this.formState['cvv'] = value;
   };
 
+  resetForm = () => {
+    this.formElement = this.formElement
+      ? this.formElement
+      : document.getElementsByTagName('form')[0];
+    this.formElement.reset();
+  };
+
   onclickSave = () => {
     this.validateCardNumber();
     if (this.formError) {
+      // this.resetForm();
       alert('Please correct fields before submitting');
       return;
     }
     getEventHub().publish(EVENTS.CARD_SAVED, { cardInfo: this.formState });
   };
 
+  onFormControlFocusOut = (e) => {
+    const error = validateError(e);
+    if (error) {
+      showError(e, error);
+    } else {
+      removeError(e);
+    }
+  };
+
   getMarkup = () => {
     return `
-            <div class = "form-view">
+            <div class="form-view" onfocusout="onFormControlFocusOut(event)">
             <form>
                 <label for="credit-card-number">Credit card number</label><br/>
                 <input type="number" name="credit-card-number" placeholder="Enter card number" onkeyup="onchangeCardNumber(value)" required/><br/>
