@@ -1,10 +1,7 @@
 import { EVENTS } from '../controller/events';
 import { getEventHub } from '../controller/event-hub';
-import {
-  validateError,
-  showError,
-  removeError,
-} from './../validations/error-handler';
+import { validateError, showError, removeError } from '../utils/error-handler';
+import { updateCardType, getCardType } from './../utils/card-type';
 export default class FormView {
   constructor() {
     this.formState = {};
@@ -23,7 +20,15 @@ export default class FormView {
   };
 
   onchangeCardNumber = (value) => {
+    // this needs to be optimised
+    this.formElement = this.formElement
+      ? this.formElement
+      : document.getElementsByTagName('form')[0];
     this.formState['cardNumber'] = value;
+    const cardTye = getCardType(value);
+    if (cardTye) {
+      updateCardType(cardTye, this.formElement);
+    }
   };
 
   onchangeDate = (value) => {
@@ -67,7 +72,7 @@ export default class FormView {
             <div class="form-view" onfocusout="onFormControlFocusOut(event)">
             <form>
                 <label for="credit-card-number">Credit card number</label><br/>
-                <input type="number" name="credit-card-number" placeholder="Enter card number" onkeyup="onchangeCardNumber(value)" required/><br/>
+                <input type="number" class="credit-card-number" name="credit-card-number" placeholder="Enter card number" onkeyup="onchangeCardNumber(value)" required/><br/>
                 <label for="expiry-date">Expiry date</label><br/>
                 <input type="date" name="expiry-date" placeholder="Enter date" onchange="onchangeDate(value)" /><br/>
                 <label for="cvv-number">CVV Number</label><br/>
