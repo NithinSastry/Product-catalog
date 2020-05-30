@@ -1,6 +1,11 @@
 import { EVENTS } from '../controller/events';
 import { getEventHub } from '../controller/event-hub';
-import { validateError, showError, removeError } from '../utils/error-handler';
+import {
+  isCardNumberValid,
+  showError,
+  removeError,
+  isCVVValid,
+} from '../utils/error-handler';
 import { updateCardType, getCardType } from './../utils/card-type';
 export default class FormView {
   constructor() {
@@ -26,6 +31,7 @@ export default class FormView {
       : document.getElementsByTagName('form')[0];
     this.formState['cardNumber'] = value;
     const cardTye = getCardType(value);
+    this.formState['cardType'] = cardTye;
     if (cardTye) {
       updateCardType(cardTye, this.formElement);
     }
@@ -59,7 +65,15 @@ export default class FormView {
   };
 
   onFormControlFocusOut = (e) => {
-    const error = validateError(e);
+    let error = '';
+    switch (e.target.name) {
+      case 'credit-card-number':
+        error = isCardNumberValid(e.target.value);
+        break;
+      case 'cvv-number':
+        error = isCVVValid(this.formState['cardType'], e.target.value);
+        break;
+    }
     if (error) {
       showError(e, error);
     } else {
@@ -74,7 +88,7 @@ export default class FormView {
                 <label for="credit-card-number">Credit card number</label><br/>
                 <input type="number" class="credit-card-number" name="credit-card-number" placeholder="Enter card number" onkeyup="onchangeCardNumber(value)" required/><br/>
                 <label for="expiry-date">Expiry date</label><br/>
-                <input type="date" name="expiry-date" placeholder="Enter date" onchange="onchangeDate(value)" /><br/>
+                <input type="month" name="expiry-date" placeholder="Enter date" onchange="onchangeDate(value)" /><br/>
                 <label for="cvv-number">CVV Number</label><br/>
                 <input type="password" name="cvv-number" placeholder="Enter CVV" onkeyup="onchangeCVVNumber(value)" /><br/>
                 <button onclick="onclickSave()" type="button">Save</button>

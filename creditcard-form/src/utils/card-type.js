@@ -31,11 +31,11 @@ export const getCardType = (cardNumber) => {
   if (VISA.test(cardNumber)) {
     cardType = 'VISA';
   } else if (MASTER_CARD.test(cardNumber)) {
-    cardType = 'MASTER CARD';
+    cardType = 'MASTER_CARD';
   } else if (AMEX.test(cardNumber)) {
     cardType = 'AMEX';
   } else if (DINERS_CLUB.test(cardNumber)) {
-    cardType = 'DINERS CLUB';
+    cardType = 'DINERS_CLUB';
   }
   return cardType;
 };

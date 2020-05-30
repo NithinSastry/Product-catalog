@@ -1,4 +1,4 @@
-const validateConfig = {
+export const validateConfig = {
   VISA: {
     cardNumberLength: 16,
     cvvLength: 3,

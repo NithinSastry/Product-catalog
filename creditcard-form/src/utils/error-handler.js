@@ -1,18 +1,26 @@
+import { validateConfig } from '../utils/validation-config';
 const isBlank = (value) => {
   return value.length == 0 ? true : false;
 };
 
-export const validateError = (e) => {
+export const isCVVValid = (cardType, cvvValue) => {
   let errorMessage = '';
-  switch (e.target.name) {
-    case 'credit-card-number':
-      if (isBlank(e.target.value)) {
-        errorMessage = 'Please enter credit card number';
-      }
-      break;
+  if (!(cvvValue.length === validateConfig[cardType].cvvLength)) {
+    errorMessage = 'Please enter valid CVV';
+  }
+  return errorMessage;
+};
 
-    default:
-      break;
+const isCardNumberLengthValid = (cardType, value) => {
+  return validateConfig[cardType].cardNumberLength === value.length
+    ? true
+    : false;
+};
+
+export const isCardNumberValid = (cardType, value) => {
+  let errorMessage = '';
+  if (isBlank(value) || isCardNumberLengthValid(cardType, value)) {
+    errorMessage = 'Please enter valid credit card number';
   }
   return errorMessage;
 };
