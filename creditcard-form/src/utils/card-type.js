@@ -51,3 +51,6 @@ export const updateCardType = (cardType, formElement) => {
   }
   cardTypElement.setAttribute('src', getCardImage(cardType));
 };
+
+const sample = myFunction();
+sample();

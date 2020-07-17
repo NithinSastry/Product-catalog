@@ -1,0 +1,32 @@
+{
+  "name": "emailclient",
+  "version": "1.0.0",
+  "description": "Learning to build email client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel": "sudo babel src -d dist --unsafe-perm=true --allow-root",
+    "build": "webpack-dev-server --mode development --hot"
+  },
+  "keywords": [
+    "email"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.6",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.1.0",
+    "babel-preset-latest": "^6.24.1",
+    "css-loader": "^3.5.3",
+    "express": "^4.17.1",
+    "html-webpack-plugin": "^4.3.0",
+    "json-server": "^0.16.1",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "author": "Nithin Sastry Tellapuri",
+  "license": "ISC"
+}
