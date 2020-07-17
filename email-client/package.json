@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "sudo babel src -d dist --unsafe-perm=true --allow-root",
-    "build": "webpack-dev-server --mode development --hot"
+    "build": "webpack-dev-server --mode development --hot",
+    "server": "npx json-server db.json --port 8080"
   },
   "keywords": [
     "email"

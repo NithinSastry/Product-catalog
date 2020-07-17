@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "read": true,
+      "flagged": false,
+      "content": {
+        "text": "Sample email",
+        "from": "airtel.com"
+      }
+    },
+    {
+      "read": false,
+      "flagged": true,
+      "content": {
+        "text": "Sample text",
+        "from": "jio.com"
+      }
+    },
+    {
+      "read": true,
+      "flagged": true,
+      "content": {
+        "text": "Sample email 3",
+        "from": "vodafone.com"
+      }
+    },
+    {
+      "read": false,
+      "flagged": true,
+      "content": {
+        "text": "Sample email 4",
+        "from": "sample.com"
+      }
+    },
+    {
+      "read": true,
+      "flagged": false,
+      "content": {
+        "text": "Sample email 5",
+        "from": "airtel.com"
+      }
+    },
+    {
+      "read": false,
+      "flagged": false,
+      "content": {
+        "text": "Sample email 6",
+        "from": "random.com"
+      }
+    }
+  ]
+}
